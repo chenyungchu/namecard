@@ -3,22 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>林宥辰 ∙ 數位產品設計師</title>
-<meta name="description" content="把複雜的流程，做成一眼就懂的介面。">
-<meta property="og:title" content="林宥辰 ∙ 數位產品設計師">
-<meta property="og:description" content="把複雜的流程，做成一眼就懂的介面。">
+<title>陳詠筑 Rita ∙ AI 應用師</title>
+<meta name="description" content="把模型接進資料，把資料變成答案。">
+<meta property="og:title" content="陳詠筑 Rita ∙ AI 應用師">
+<meta property="og:description" content="把模型接進資料，把資料變成答案。">
 <meta property="og:image" content="card.png">
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <style>
+  /* ═══════════════════════════════════════════════
+     配色：配合水彩人像的米白暖調
+     要換主色只要改 --accent
+     （深色版備用：--bg:#0e1116 --surface:#171c24
+       --edge:#2b333f --ink:#eef2f7 --ink-dim:#97a3b4
+       --accent:#d8a657 --accent-2:#4db8a8）
+     ═══════════════════════════════════════════════ */
   :root{
-    --bg:        #0e1116;
-    --surface:   #171c24;
-    --surface-2: #1e242e;
-    --edge:      #2b333f;
-    --ink:       #eef2f7;
-    --ink-dim:   #97a3b4;
-    --accent:    #d8a657;   /* 主強調：香檳金 */
-    --accent-2:  #4db8a8;   /* 次強調：青瓷 */
+    --bg:        #f6f3ee;   /* 暖米白紙感 */
+    --surface:   #fffdfa;
+    --surface-2: #efebe3;
+    --edge:      #e3ddd2;
+    --ink:       #2b2824;
+    --ink-dim:   #7f7a70;
+    --accent:    #7d9a74;   /* 苔綠，取自襯衫 */
+    --accent-2:  #8fa8c0;   /* 霧藍，取自背景 */
     --font: "Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,system-ui,sans-serif;
   }
 
@@ -26,116 +33,120 @@
   html{ scroll-behavior:smooth; }
   body{
     margin:0; font-family:var(--font); color:var(--ink); background:var(--bg);
-    line-height:1.7; padding-bottom:84px;   /* 讓底部固定列不壓到內容 */
+    line-height:1.75; padding-bottom:84px;
   }
-  .wrap{ max-width:520px; margin:0 auto; padding:0 20px; }
+  .wrap{ max-width:520px; margin:0 auto; padding:0 22px; }
 
   /* ───────── Hero ───────── */
   .hero{
     position:relative; text-align:center;
-    padding-block:max(52px,calc(env(safe-area-inset-top) + 40px)) 44px;
-    background:radial-gradient(100% 80% at 50% 0%, #212a37 0%, transparent 72%);
+    padding-block:max(54px,calc(env(safe-area-inset-top) + 42px)) 46px;
+    background:radial-gradient(110% 85% at 50% 0%, #fffefb 0%, transparent 70%);
     overflow:hidden;
   }
   .hero::after{
     content:""; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
-    width:min(260px,70%); height:1px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent); opacity:.55;
+    width:min(240px,65%); height:1px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent); opacity:.7;
   }
   .avatar{
-    width:148px; height:148px; border-radius:50%; object-fit:cover; display:block; margin:0 auto;
-    border:1px solid rgba(216,166,87,.45);
-    box-shadow:0 0 0 7px rgba(216,166,87,.06), 0 18px 40px -16px rgba(0,0,0,.8);
+    width:128px; height:171px; border-radius:16px; display:block; margin:0 auto;
+    object-fit:cover;                            /* 3:4 直幅，與原圖同比例 */
+    border:4px solid var(--surface);
+    box-shadow:0 0 0 1px var(--edge), 0 16px 34px -16px rgba(60,52,40,.5);
     background:var(--surface-2);
   }
   .avatar-fallback{
-    width:148px; height:148px; border-radius:50%; margin:0 auto;
+    width:128px; height:171px; border-radius:16px; margin:0 auto;
     display:grid; place-items:center;
-    font-size:52px; font-weight:300; color:var(--accent);
-    background:linear-gradient(145deg,#232b36,#1a2027);
-    border:1px solid rgba(216,166,87,.45);
-    box-shadow:0 0 0 7px rgba(216,166,87,.06);
+    font-size:48px; font-weight:300; color:var(--accent);
+    background:linear-gradient(145deg,#f3efe7,#e8e3d9);
+    border:4px solid var(--surface); box-shadow:0 0 0 1px var(--edge);
   }
-  .name{ margin:24px 0 0; font-size:32px; font-weight:600; letter-spacing:.06em; line-height:1.25; }
-  .name-en{ margin:7px 0 0; font-size:11.5px; letter-spacing:.24em; color:var(--ink-dim); text-transform:uppercase; }
-  .role{ margin:18px 0 0; font-size:15px; letter-spacing:.03em; }
-  .org{ margin:5px 0 0; font-size:13px; color:var(--ink-dim); }
-  .tagline{ margin:22px auto 0; font-size:14px; color:var(--ink-dim); max-width:20em; }
+  .name{ margin:24px 0 0; font-size:33px; font-weight:600; letter-spacing:.08em; line-height:1.25; }
+  .name-en{ margin:8px 0 0; font-size:11.5px; letter-spacing:.26em; color:var(--ink-dim); text-transform:uppercase; }
+  .role{
+    display:inline-block; margin:20px 0 0; padding:5px 15px;
+    font-size:13.5px; letter-spacing:.08em; color:var(--accent);
+    border:1px solid rgba(125,154,116,.4); border-radius:999px; background:rgba(125,154,116,.07);
+  }
+  .org{ margin:12px 0 0; font-size:13.5px; color:var(--ink-dim); letter-spacing:.04em; }
+  .tagline{ margin:24px auto 0; font-size:14.5px; color:#5d584f; max-width:19em; }
 
-  /* ───────── 區塊標題 ───────── */
-  section{ padding-block:38px; }
+  /* ───────── 區塊 ───────── */
+  section{ padding-block:40px; }
   .eyebrow{
-    margin:0 0 16px; font-size:10.5px; font-weight:600;
+    margin:0 0 18px; font-size:10.5px; font-weight:600;
     letter-spacing:.22em; color:var(--accent); text-transform:uppercase;
-    display:flex; align-items:center; gap:11px;
+    display:flex; align-items:center; gap:12px;
   }
   .eyebrow::after{ content:""; flex:1; height:1px; background:var(--edge); }
 
-  .bio p{ margin:0 0 15px; font-size:14.5px; color:#c6ced9; }
+  .bio p{ margin:0 0 16px; font-size:14.5px; color:#4e4941; }
   .bio p:last-child{ margin-bottom:0; }
 
-  /* ───────── 技能標籤 ───────── */
-  .tags{ list-style:none; margin:20px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+  .tags{ list-style:none; margin:22px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
   .tags li{
     font-size:12px; letter-spacing:.04em; color:var(--ink-dim);
-    border:1px solid var(--edge); border-radius:999px; padding:6px 13px;
-    background:var(--surface);
+    border:1px solid var(--edge); border-radius:999px; padding:6px 13px; background:var(--surface);
   }
 
-  /* ───────── Instagram 圖片磚 ───────── */
-  .ig-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+  /* ───────── Instagram ───────── */
+  .ig-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(0,1fr)); gap:7px; }
+  .ig-grid[hidden]{ display:none; }   /* display:grid 會蓋掉 hidden，要補這行 */
   .ig-tile{
-    position:relative; display:block; aspect-ratio:1; border-radius:10px; overflow:hidden;
-    background:linear-gradient(140deg,#242c38,#1a2027); border:1px solid var(--edge);
+    position:relative; display:block; aspect-ratio:1; border-radius:11px; overflow:hidden;
+    background:linear-gradient(140deg,#f1ede5,#e6e0d5); border:1px solid var(--edge);
     transition:transform .18s, border-color .18s;
   }
   .ig-tile:active{ transform:scale(.97); border-color:var(--accent); }
   .ig-tile img{ width:100%; height:100%; object-fit:cover; display:block; }
   .ig-tile .ph{ position:absolute; inset:0; display:grid; place-items:center; }
-  .ig-tile img + .ph{ display:none; }   /* 圖片載入成功就不顯示佔位圖示 */
-  .ig-tile .ph svg{ width:26px; height:26px; color:#495363; }
+  .ig-tile img + .ph{ display:none; }        /* 有圖就不顯示佔位圖示 */
+  .ig-tile .ph svg{ width:26px; height:26px; color:#bdb5a7; }
 
-  .ig-cta{
-    display:flex; align-items:center; gap:13px; margin-top:14px;
-    padding:15px 17px; text-decoration:none; color:var(--ink);
-    background:var(--surface); border:1px solid var(--edge); border-radius:14px;
+  .slink{
+    display:flex; align-items:center; gap:13px;
+    padding:14px 16px; text-decoration:none; color:var(--ink);
+    background:var(--surface); border:1px solid var(--edge); border-radius:15px;
+    box-shadow:0 2px 10px -6px rgba(60,52,40,.3);
     transition:border-color .2s, transform .12s;
   }
-  .ig-cta:active{ transform:translateY(1px); border-color:var(--accent); }
-  .ig-mark{
-    width:40px; height:40px; flex:none; border-radius:11px; display:grid; place-items:center;
-    background:linear-gradient(135deg,#f9ce34,#ee2a7b 55%,#6228d7);
+  .slink + .slink{ margin-top:9px; }
+  .slink:active{ transform:translateY(1px); border-color:var(--accent); }
+  .mark{
+    width:40px; height:40px; flex:none; border-radius:12px; display:grid; place-items:center;
   }
-  .ig-mark svg{ width:21px; height:21px; color:#fff; }
-  .ig-cta .t{ flex:1; min-width:0; }
-  .ig-cta .t b{ display:block; font-size:14px; font-weight:600; letter-spacing:.02em; }
-  .ig-cta .t span{ font-size:12px; color:var(--ink-dim); }
+  .mark svg{ width:21px; height:21px; color:#fff; }
+  .mark.ig{ background:linear-gradient(135deg,#f9ce34,#ee2a7b 55%,#6228d7); }
+  .mark.fb{ background:#1877f2; }
+  .mark.yt{ background:#ff0033; }
+  .slink .t{ flex:1; min-width:0; }
+  .slink .t b{ display:block; font-size:14.5px; font-weight:600; letter-spacing:.02em; }
+  .slink .t span{ font-size:12.5px; color:var(--ink-dim); }
+  .social{ margin-top:15px; }
   .chev{ width:15px; height:15px; color:var(--ink-dim); flex:none; }
 
-  /* ───────── 連結清單 ───────── */
-  .links{ list-style:none; margin:0; padding:0; }
-  .links li + li{ border-top:1px solid var(--edge); }
-  .links li:first-child{ border-top:1px solid var(--edge); }
-  .links li:last-child{ border-bottom:1px solid var(--edge); }
-  .links a{
-    display:flex; align-items:center; gap:14px; padding:16px 2px;
-    text-decoration:none; color:var(--ink); font-size:14.5px;
-    transition:padding-left .2s, color .2s;
+  /* ───────── 聯絡卡 ───────── */
+  .contact-card{
+    display:flex; align-items:center; gap:14px;
+    padding:17px 18px; border-radius:15px;
+    background:var(--surface); border:1px solid var(--edge);
+    box-shadow:0 2px 10px -6px rgba(60,52,40,.3);
   }
-  .links a:active{ padding-left:7px; color:var(--accent); }
-  .links .ico{ width:18px; height:18px; flex:none; color:var(--accent-2); }
-  .links .lbl{ flex:1; }
-  .links .val{ font-size:11.5px; color:var(--ink-dim); }
+  .cc-ico{ width:34px; height:34px; flex:none; color:var(--accent-2); }
+  .cc-t{ min-width:0; }
+  .cc-t b{ display:block; font-size:14px; font-weight:600; letter-spacing:.02em; }
+  .cc-t span{ font-size:12.5px; color:var(--ink-dim); line-height:1.6; }
 
-  /* ───────── 底部固定動作列 ───────── */
+  /* ───────── 底部動作列 ───────── */
   .dock{
     position:fixed; left:0; right:0; bottom:0; z-index:20;
-    display:flex; gap:9px;
-    padding:12px 20px; padding-bottom:max(12px,env(safe-area-inset-bottom));
-    background:rgba(14,17,22,.86); backdrop-filter:blur(14px);
+    padding:12px 22px; padding-bottom:max(12px,env(safe-area-inset-bottom));
+    background:rgba(246,243,238,.88); backdrop-filter:blur(14px);
     border-top:1px solid var(--edge);
   }
-  .dock-inner{ max-width:520px; margin:0 auto; width:100%; display:flex; gap:9px; }
+  .dock-inner{ max-width:520px; margin:0 auto; display:flex; gap:9px; }
   .btn{
     flex:1; appearance:none; font-family:inherit; cursor:pointer;
     border:1px solid var(--edge); background:var(--surface); color:var(--ink);
@@ -146,24 +157,23 @@
   .btn:active{ transform:translateY(1px); }
   .btn svg{ width:16px; height:16px; }
   .btn.primary{
-    background:linear-gradient(180deg,#e2b369,var(--accent));
-    color:#191308; border-color:transparent; font-weight:600;
+    background:var(--accent); color:#fff; border-color:transparent; font-weight:600;
   }
   .btn[hidden]{ display:none !important; }
 
-  footer{ text-align:center; font-size:11px; letter-spacing:.14em; color:var(--ink-dim); opacity:.5; padding:10px 0 28px; }
+  footer{ text-align:center; font-size:10.5px; letter-spacing:.2em; color:var(--ink-dim); opacity:.65; padding:4px 0 30px; }
 
   .toast{
     position:fixed; left:50%; bottom:92px; transform:translate(-50%,16px);
-    background:#eef2f7; color:#0e1116; font-size:12.5px; font-weight:500;
+    background:#2b2824; color:#fffdfa; font-size:12.5px; font-weight:500;
     padding:10px 18px; border-radius:999px; opacity:0; pointer-events:none;
     transition:opacity .25s, transform .25s; z-index:30;
   }
   .toast.show{ opacity:1; transform:translate(-50%,0); }
 
   @media (max-width:360px){
-    .name{ font-size:28px; }
-    .avatar,.avatar-fallback{ width:124px; height:124px; }
+    .name{ font-size:29px; }
+    .avatar,.avatar-fallback{ width:112px; height:149px; }
   }
 </style>
 </head>
@@ -171,82 +181,87 @@
 
 <!-- ═══════════ Hero ═══════════ -->
 <header class="hero">
-  <img class="avatar" id="avatar" src="avatar.jpg" alt="林宥辰的 AI 頭像">
-  <div class="avatar-fallback" id="avatarFallback" hidden>宥</div>
+  <img class="avatar" id="avatar" src="avatar.jpg" alt="陳詠筑 Rita">
+  <div class="avatar-fallback" id="avatarFallback" hidden>詠</div>
 
-  <h1 class="name">林宥辰</h1>
-  <p class="name-en">Lin You-Chen</p>
-  <p class="role">數位產品設計師 ∙ 介面與體驗</p>
-  <p class="org">潮間帶設計工作室</p>
-  <p class="tagline">把複雜的流程，做成一眼就懂的介面。</p>
+  <h1 class="name">陳詠筑</h1>
+  <p class="name-en">Rita Chen</p>
+  <p class="role">AI 應用師</p>
+  <p class="org">國立中央大學 醫學工程研究所</p>
+  <p class="tagline">把模型接進資料，<br>把資料變成答案。</p>
 </header>
 
 <div class="wrap">
 
-  <!-- ═══════════ 自我介紹 ═══════════ -->
+  <!-- ═══════════ 自我介紹（草稿，待修改） ═══════════ -->
   <section class="bio">
     <h2 class="eyebrow">About</h2>
-    <p>十年都在做「讓人少想一件事」的設計。從銀行後台、醫療排程到社區共購平台，習慣先把使用者的真實步驟畫出來，再決定畫面長什麼樣。</p>
-    <p>相信好的介面不需要說明書，也相信設計要能被量測。最近在研究把 AI 當成介面的一部分，而不是另一個聊天視窗。</p>
+    <p>在中央大學醫學工程研究所，把語言模型接到真正要用的地方——AI 問答機器人、工程資料庫的查詢介面，讓累積下來的資料變成問得到答案的東西，而不是躺在硬碟裡。</p>
+    <p>另一半時間花在統計與數據分析。工程和醫療的資料散在各種格式與系統裡，得先整理成能分析的樣子，再決定哪些交給模型、哪些該用傳統方法算。相信能被驗證的結果才算結果。</p>
     <ul class="tags">
-      <li>UI / UX</li><li>設計系統</li><li>使用者研究</li><li>原型製作</li><li>前端協作</li>
+      <li>AI 問答機器人</li><li>語言模型應用</li><li>工程資料庫</li><li>統計數據分析</li><li>醫學工程</li>
     </ul>
   </section>
 
-  <!-- ═══════════ Instagram ═══════════ -->
+  <!-- ═══════════ 社群 ═══════════ -->
   <section>
-    <h2 class="eyebrow">Instagram</h2>
-    <div class="ig-grid">
-      <a class="ig-tile" href="https://instagram.com/example" target="_blank" rel="noopener" aria-label="Instagram 作品 1">
-        <img src="ig1.jpg" alt="" onerror="this.remove()">
+    <h2 class="eyebrow">Links</h2>
+
+    <!-- IG 圖片磚：放 ig1.jpg ig2.jpg ig3.jpg 進資料夾就會出現，三張都沒有時整排自動隱藏 -->
+    <div class="ig-grid" id="igGrid">
+      <a class="ig-tile" href="https://instagram.com/rita29ood" target="_blank" rel="noopener" aria-label="Instagram 貼文 1">
+        <img src="ig1.jpg" alt="" onerror="this.closest('.ig-tile').remove()">
         <span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span>
       </a>
-      <a class="ig-tile" href="https://instagram.com/example" target="_blank" rel="noopener" aria-label="Instagram 作品 2">
-        <img src="ig2.jpg" alt="" onerror="this.remove()">
+      <a class="ig-tile" href="https://instagram.com/rita29ood" target="_blank" rel="noopener" aria-label="Instagram 貼文 2">
+        <img src="ig2.jpg" alt="" onerror="this.closest('.ig-tile').remove()">
         <span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span>
       </a>
-      <a class="ig-tile" href="https://instagram.com/example" target="_blank" rel="noopener" aria-label="Instagram 作品 3">
-        <img src="ig3.jpg" alt="" onerror="this.remove()">
+      <a class="ig-tile" href="https://instagram.com/rita29ood" target="_blank" rel="noopener" aria-label="Instagram 貼文 3">
+        <img src="ig3.jpg" alt="" onerror="this.closest('.ig-tile').remove()">
         <span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span>
       </a>
     </div>
 
-    <a class="ig-cta" href="https://instagram.com/example" target="_blank" rel="noopener">
-      <span class="ig-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
-      </span>
-      <span class="t"><b>在 Instagram 上追蹤</b><span>@example</span></span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
-    </a>
+    <div class="social">
+      <a class="slink" href="https://instagram.com/rita29ood" target="_blank" rel="noopener">
+        <span class="mark ig"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+        <span class="t"><b>Instagram</b><span>@rita29ood</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+
+      <a class="slink" href="https://www.facebook.com/chen.yong.zhu.988371" target="_blank" rel="noopener">
+        <span class="mark fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg></span>
+        <span class="t"><b>Facebook</b><span>陳詠筑</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+
+      <a class="slink" href="https://www.youtube.com/@rita-betterlife" target="_blank" rel="noopener">
+        <span class="mark yt"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg></span>
+        <span class="t"><b>YouTube</b><span>冬瓜檸檬</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
   </section>
 
-  <!-- ═══════════ 其他連結 ═══════════ -->
+  <!-- ═══════════ 聯絡方式：不顯示號碼，只透過 vCard 提供 ═══════════ -->
   <section>
     <h2 class="eyebrow">Contact</h2>
-    <ul class="links">
-      <li><a href="https://example.com" target="_blank" rel="noopener">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18A15 15 0 0 1 12 3"/></svg>
-        <span class="lbl">個人網站</span><span class="val">example.com</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></li>
-
-      <li><a href="https://example.com/work" target="_blank" rel="noopener">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
-        <span class="lbl">作品集</span><span class="val">Portfolio</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></li>
-
-      <li><a href="mailto:hello@example.com">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-        <span class="lbl">Email</span><span class="val">hello@example.com</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></li>
-
-      <li><a href="tel:+886912345678">
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z"/></svg>
-        <span class="lbl">手機</span><span class="val">0912-345-678</span>
-        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></li>
-    </ul>
+    <div class="contact-card">
+      <svg class="cc-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+        <rect x="2.5" y="5" width="19" height="14.5" rx="2.5"/>
+        <circle cx="9" cy="11" r="2.4"/>
+        <path d="M5.4 16.6c.5-1.7 1.9-2.6 3.6-2.6s3.1.9 3.6 2.6"/>
+        <path d="M15.5 10.5h3.5M15.5 13.6h3.5"/>
+      </svg>
+      <div class="cc-t">
+        <b>Email 與電話在聯絡人檔裡</b>
+        <span>按下方「存聯絡人」直接存進手機通訊錄</span>
+      </div>
+    </div>
   </section>
 
-  <footer>LIN YOU-CHEN</footer>
+  <footer>RITA CHEN</footer>
 </div>
 
 <!-- ═══════════ 底部動作列 ═══════════ -->
@@ -271,36 +286,44 @@
 
 <script>
 /* ════════════════════════════════════════════════════════════════
-   1. 名片資料（vCard 與 LINE 分享訊息都讀這裡，要跟畫面一致）
+   1. 名片資料（vCard 與 LINE 分享訊息讀這裡，要跟畫面一致）
+      phone / email / website 留空就不會出現在聯絡人檔裡
    ════════════════════════════════════════════════════════════════ */
 const PROFILE = {
-  name:    "林宥辰",
-  nameEn:  "Lin You-Chen",
-  title:   "數位產品設計師",
-  org:     "潮間帶設計工作室",
-  tagline: "把複雜的流程，做成一眼就懂的介面。",
-  phone:   "+886912345678",
-  email:   "hello@example.com",
-  website: "https://example.com",
-  instagram: "https://instagram.com/example",
+  name:      "陳詠筑",
+  nameEn:    "Rita Chen",
+  title:     "AI 應用師",
+  org:       "國立中央大學 醫學工程研究所",
+  tagline:   "把模型接進資料，把資料變成答案。",
+  phone:     "+886985139669",
+  email:     "rita.30317@gmail.com",
+  website:   "",
+  instagram: "https://instagram.com/rita29ood",
+  facebook:  "https://www.facebook.com/chen.yong.zhu.988371",
+  youtube:   "https://www.youtube.com/@rita-betterlife",
 };
 
 /* ════════════════════════════════════════════════════════════════
-   2. 部署後要填的兩個值
+   2. 部署後要回填的兩個值
    ════════════════════════════════════════════════════════════════ */
-// LINE Developers → LIFF 頁籤建立應用後取得（公開識別碼，放前端沒問題）
-const LIFF_ID = "";                 // 例：1661234567-AbCdEfGh
+// LINE Developers → LIFF 頁籤建立後取得（公開識別碼，放前端沒問題）
+const LIFF_ID = "";          // 例：1661234567-AbCdEfGh
 
-// 名片圖的「公開 https 網址」。用 share-card.html 匯出 card.png，
-// 連同網站一起上傳後，填它的完整網址。
-// 留空的話，分享出去會退回文字版卡片（仍可點，只是沒有圖）。
-const CARD_IMAGE_URL = "";          // 例：https://你的帳號.github.io/namecard/card.png
+// 名片圖的公開網址，例：https://chenyungchu.github.io/namecard/card.png
+// 留空的話分享出去會退回文字版卡片（仍可點，只是沒有圖）
+const CARD_IMAGE_URL = "";
 
 /* ───────── 頭像缺檔時改用文字頭像 ───────── */
 const avatar = document.getElementById("avatar");
 avatar.addEventListener("error", () => {
   avatar.hidden = true;
   document.getElementById("avatarFallback").hidden = false;
+});
+
+/* ───────── IG 圖片磚：三張都載不到就整排隱藏 ───────── */
+addEventListener("load", () => {
+  const grid = document.getElementById("igGrid");
+  if (grid && grid.querySelectorAll(".ig-tile").length === 0) grid.hidden = true;
 });
 
 /* ───────── 提示 ───────── */
@@ -312,7 +335,6 @@ function toast(msg){
   toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
 }
 
-/* ───────── 這個頁面自己的公開網址 ───────── */
 const siteUrl = () => location.origin + location.pathname;
 
 /* ───────── 複製連結 ───────── */
@@ -332,23 +354,25 @@ document.getElementById("btnCopy").addEventListener("click", async () => {
 
 /* ───────── 存成聯絡人 (vCard) ───────── */
 document.getElementById("btnVcard").addEventListener("click", () => {
-  const vcf = [
-    "BEGIN:VCARD","VERSION:3.0",
+  const lines = [
+    "BEGIN:VCARD", "VERSION:3.0",
     "N:" + PROFILE.name + ";;;;",
     "FN:" + PROFILE.name,
     "ORG:" + PROFILE.org,
     "TITLE:" + PROFILE.title,
-    "TEL;TYPE=CELL:" + PROFILE.phone,
-    "EMAIL;TYPE=INTERNET:" + PROFILE.email,
-    "URL:" + PROFILE.website,
-    "NOTE:" + PROFILE.tagline,
-    "END:VCARD"
-  ].join("\r\n");
+  ];
+  if (PROFILE.phone)   lines.push("TEL;TYPE=CELL:" + PROFILE.phone);
+  if (PROFILE.email)   lines.push("EMAIL;TYPE=INTERNET:" + PROFILE.email);
+  if (PROFILE.website) lines.push("URL:" + PROFILE.website);
+  if (PROFILE.instagram) lines.push("URL;TYPE=Instagram:" + PROFILE.instagram);
+  if (PROFILE.facebook)  lines.push("URL;TYPE=Facebook:" + PROFILE.facebook);
+  if (PROFILE.youtube)   lines.push("URL;TYPE=YouTube:" + PROFILE.youtube);
+  lines.push("NOTE:" + PROFILE.tagline, "END:VCARD");
 
-  const blob = new Blob(["﻿" + vcf], { type:"text/vcard;charset=utf-8" });
+  const blob = new Blob(["﻿" + lines.join("\r\n")], { type:"text/vcard;charset=utf-8" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = (PROFILE.nameEn || PROFILE.name) + ".vcf";
+  a.download = (PROFILE.nameEn || PROFILE.name).replace(/\s+/g, "-") + ".vcf";
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 4000);
   toast("已下載聯絡人檔");
@@ -356,7 +380,7 @@ document.getElementById("btnVcard").addEventListener("click", () => {
 
 /* ════════════════════════════════════════════════════════════════
    3. 送到 LINE 的訊息
-      有名片圖 → 整張滿版圖片，點圖開這個網站（看起來就是一張圖）
+      有名片圖 → 滿版圖片，點圖開這個網站（看起來就是一張圖）
       沒名片圖 → 退回文字卡片
    ════════════════════════════════════════════════════════════════ */
 function shareMessage(){
@@ -367,14 +391,10 @@ function shareMessage(){
       type:"flex",
       altText: PROFILE.name + " 的電子名片",
       contents:{
-        type:"bubble",
-        size:"mega",
+        type:"bubble", size:"mega",
         hero:{
-          type:"image",
-          url: CARD_IMAGE_URL,
-          size:"full",
-          aspectRatio:"1:1",
-          aspectMode:"cover",
+          type:"image", url:CARD_IMAGE_URL,
+          size:"full", aspectRatio:"1:1", aspectMode:"cover",
           action:{ type:"uri", label:"打開名片", uri:url }
         }
       }
@@ -389,16 +409,16 @@ function shareMessage(){
       body:{
         type:"box", layout:"vertical", paddingAll:"18px", spacing:"sm",
         contents:[
-          { type:"text", text:PROFILE.name, weight:"bold", size:"xl", color:"#1b2029" },
-          { type:"text", text:PROFILE.title + " ∙ " + PROFILE.org, size:"sm", color:"#8b94a3", margin:"xs", wrap:true },
-          { type:"separator", margin:"lg", color:"#e4e7ec" },
-          { type:"text", text:PROFILE.tagline, size:"sm", color:"#4a5260", wrap:true, margin:"lg" }
+          { type:"text", text:PROFILE.name, weight:"bold", size:"xl", color:"#2b2824" },
+          { type:"text", text:PROFILE.title + " ∙ " + PROFILE.org, size:"sm", color:"#7f7a70", margin:"xs", wrap:true },
+          { type:"separator", margin:"lg", color:"#e3ddd2" },
+          { type:"text", text:PROFILE.tagline, size:"sm", color:"#4e4941", wrap:true, margin:"lg" }
         ]
       },
       footer:{
         type:"box", layout:"vertical", paddingAll:"12px",
         contents:[{
-          type:"button", style:"primary", height:"sm", color:"#d8a657",
+          type:"button", style:"primary", height:"sm", color:"#7d9a74",
           action:{ type:"uri", label:"打開電子名片", uri:url }
         }]
       }
@@ -406,14 +426,14 @@ function shareMessage(){
   };
 }
 
-/* ───────── LIFF 初始化 ───────── */
+/* ───────── LIFF ───────── */
 const btnShare = document.getElementById("btnShare");
 
 async function initLiff(){
-  if (!LIFF_ID || typeof liff === "undefined") return;   // 還沒設 LIFF ID：略過
+  if (!LIFF_ID || typeof liff === "undefined") return;
   try {
     await liff.init({ liffId: LIFF_ID });
-    if (!liff.isApiAvailable("shareTargetPicker")) return; // 非 LINE 內開啟：按鈕保持隱藏
+    if (!liff.isApiAvailable("shareTargetPicker")) return;  // 非 LINE 內開啟：按鈕保持隱藏
     btnShare.hidden = false;
     btnShare.addEventListener("click", async () => {
       try {
