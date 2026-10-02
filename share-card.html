@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>名片圖產生器 — 1040×1040</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{
+    --bg:#0e1116; --surface:#171c24; --surface-2:#1e242e; --edge:#2b333f;
+    --ink:#eef2f7; --ink-dim:#97a3b4; --accent:#d8a657;
+    --font:"Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,system-ui,sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; font-family:var(--font); background:#07090c; color:var(--ink);
+    min-height:100dvh; display:flex; flex-direction:column; align-items:center;
+    padding:24px 16px 40px; gap:18px;
+  }
+  .note{
+    max-width:560px; font-size:13px; line-height:1.85; color:var(--ink-dim);
+    background:var(--surface); border:1px solid var(--edge); border-radius:14px; padding:16px 18px;
+  }
+  .note b{ color:var(--ink); }
+  .note code{
+    font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12px;
+    background:#0e1116; border:1px solid var(--edge); border-radius:5px; padding:1px 6px; color:var(--accent);
+  }
+
+  /* 預覽框：裡面那張圖永遠是 1040×1040，只是被縮小顯示 */
+  .frame{ overflow:hidden; border-radius:16px; box-shadow:0 24px 60px -24px #000; flex:none; }
+
+  /* ═══════════ 以下就是會被匯出成 PNG 的那張圖 ═══════════ */
+  #card{
+    width:1040px; height:1040px; flex:none;
+    transform-origin:top left;
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(85% 65% at 50% 0%, #232c3a 0%, transparent 70%),
+      linear-gradient(170deg,#141922,#0d1015);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:96px 90px;
+  }
+  #card .topline{
+    position:absolute; top:0; left:0; right:0; height:7px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  }
+  #card .ring{
+    width:360px; height:360px; border-radius:50%; flex:none;
+    display:grid; place-items:center; overflow:hidden;
+    border:3px solid rgba(216,166,87,.5);
+    box-shadow:0 0 0 18px rgba(216,166,87,.055);
+    background:linear-gradient(145deg,#232b36,#1a2027);
+  }
+  #card .ring img{ width:100%; height:100%; object-fit:cover; display:block; }
+  #card .ring span{ font-size:130px; font-weight:300; color:var(--accent); }
+
+  #card .name{ margin:62px 0 0; font-size:86px; font-weight:600; letter-spacing:.07em; line-height:1.1; }
+  #card .name-en{ margin:22px 0 0; font-size:25px; letter-spacing:.42em; color:var(--ink-dim); text-transform:uppercase; }
+  #card .rule{ width:120px; height:2px; background:var(--accent); opacity:.65; margin:44px 0; }
+  #card .role{ margin:0; font-size:38px; letter-spacing:.06em; }
+  #card .org{ margin:16px 0 0; font-size:28px; color:var(--ink-dim); letter-spacing:.05em; }
+  #card .tagline{ margin:52px 0 0; font-size:30px; line-height:1.75; color:#b6c0cd; max-width:24em; }
+  #card .hint{
+    position:absolute; bottom:60px; left:0; right:0;
+    font-size:24px; letter-spacing:.2em; color:var(--accent); opacity:.85;
+  }
+  /* ═══════════ 匯出區結束 ═══════════ */
+
+  .bar{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  button{
+    appearance:none; font-family:inherit; cursor:pointer; font-size:14px; letter-spacing:.04em;
+    border:1px solid var(--edge); background:var(--surface); color:var(--ink);
+    border-radius:13px; padding:14px 22px; transition:transform .12s;
+  }
+  button:active{ transform:translateY(1px); }
+  button.primary{
+    background:linear-gradient(180deg,#e2b369,var(--accent)); color:#191308;
+    border-color:transparent; font-weight:600;
+  }
+  button:disabled{ opacity:.5; cursor:default; }
+  .status{ font-size:12.5px; color:var(--ink-dim); min-height:1.4em; }
+</style>
+</head>
+<body>
+
+<div class="note">
+  <b>這頁只是產圖工具，本身不用上線。</b>
+  把 <code>avatar.jpg</code> 放進同一個資料夾 → 重新整理 → 按「下載 card.png」。
+  尺寸已經是 LINE 圖文訊息要求的 1040×1040。<br><br>
+  <b>產出的 card.png 有兩個用途：</b><br>
+  ① <b>路線 A</b>：直接上傳到 OA Manager →「圖文訊息」，在圖上設連結。<br>
+  ② <b>路線 B</b>：跟網站一起上傳，把它的公開網址填進 <code>index.html</code> 的
+  <code>CARD_IMAGE_URL</code>，給 LIFF 分享用。
+</div>
+
+<div class="frame" id="frame">
+  <div id="card">
+    <div class="topline"></div>
+
+    <div class="ring">
+      <img id="cardAvatar" src="avatar.jpg" alt="">
+      <span id="cardAvatarFallback" hidden>宥</span>
+    </div>
+
+    <h1 class="name">林宥辰</h1>
+    <p class="name-en">Lin You-Chen</p>
+    <div class="rule"></div>
+    <p class="role">數位產品設計師</p>
+    <p class="org">潮間帶設計工作室</p>
+    <p class="tagline">把複雜的流程，<br>做成一眼就懂的介面。</p>
+
+    <div class="hint">點一下看完整介紹</div>
+  </div>
+</div>
+
+<div class="bar">
+  <button class="primary" id="btnPng">下載 card.png</button>
+  <button id="btnJpg">下載 card.jpg（檔案較小）</button>
+</div>
+<div class="status" id="status"></div>
+
+<script>
+const card   = document.getElementById("card");
+const frame  = document.getElementById("frame");
+const status = document.getElementById("status");
+
+/* ───────── 頭像缺檔時改用文字 ───────── */
+const ca = document.getElementById("cardAvatar");
+ca.addEventListener("error", () => {
+  ca.hidden = true;
+  document.getElementById("cardAvatarFallback").hidden = false;
+  status.textContent = "找不到 avatar.jpg，先用文字頭像預覽。";
+});
+
+/* ───────── 把 1040px 的卡片縮到畫面裡預覽 ───────── */
+function fit(){
+  const avail = Math.min(window.innerWidth - 32, 560);
+  const scale = avail / 1040;
+  card.style.transform = "scale(" + scale + ")";
+  frame.style.width  = Math.round(1040 * scale) + "px";
+  frame.style.height = Math.round(1040 * scale) + "px";
+}
+fit();
+addEventListener("resize", fit);
+
+/* ───────── 匯出 ───────── */
+async function exportImage(type, ext, quality){
+  const btns = document.querySelectorAll("button");
+  btns.forEach(b => b.disabled = true);
+  status.textContent = "產圖中…";
+
+  const saved = card.style.transform;
+  card.style.transform = "none";          // 必須取消縮放，才會輸出完整 1040×1040
+
+  try {
+    const canvas = await html2canvas(card, {
+      width: 1040, height: 1040, scale: 1,
+      backgroundColor: "#0e1116",
+      useCORS: true, logging: false
+    });
+
+    const blob = await new Promise(r => canvas.toBlob(r, type, quality));
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "card." + ext;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+
+    status.textContent = "已下載 card." + ext + "（" + Math.round(blob.size / 1024) + " KB）";
+  } catch (err) {
+    console.error(err);
+    status.textContent = "產圖失敗，請看瀏覽器主控台。";
+  } finally {
+    card.style.transform = saved;
+    btns.forEach(b => b.disabled = false);
+  }
+}
+
+document.getElementById("btnPng").addEventListener("click", () => exportImage("image/png", "png"));
+document.getElementById("btnJpg").addEventListener("click", () => exportImage("image/jpeg", "jpg", 0.92));
+</script>
+</body>
+</html>
