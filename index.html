@@ -25,6 +25,7 @@
     --ink:       #2b2824;
     --ink-dim:   #7f7a70;
     --accent:    #7d9a74;   /* 苔綠，取自襯衫 */
+    --accent-rgb: 125,154,116;
     --accent-2:  #8fa8c0;   /* 霧藍，取自背景 */
     --font: "Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,system-ui,sans-serif;
   }
@@ -32,46 +33,75 @@
   *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   html{ scroll-behavior:smooth; }
   body{
-    margin:0; font-family:var(--font); color:var(--ink); background:var(--bg);
-    line-height:1.75; padding-bottom:84px;
+    margin:0; font-family:var(--font); color:var(--ink);
+    background:#e8e6e0;            /* 桌機時直欄兩側的底色 */
+    line-height:1.75;
+  }
+  /* 整站是一支直欄，寬度與手機一致 */
+  .shell{
+    max-width:520px; margin:0 auto; min-height:100vh;
+    background:var(--bg); padding-bottom:84px;
+    box-shadow:0 0 60px -20px rgba(60,52,40,.35);
   }
   .wrap{ max-width:520px; margin:0 auto; padding:0 22px; }
 
-  /* ───────── Hero ───────── */
+  /* ───────── Hero：滿版照片 ───────── */
   .hero{
-    position:relative; text-align:center;
-    padding-block:max(54px,calc(env(safe-area-inset-top) + 42px)) 46px;
-    background:radial-gradient(110% 85% at 50% 0%, #fffefb 0%, transparent 70%);
-    overflow:hidden;
+    position:relative; width:100%; height:min(66vh,600px); overflow:hidden;
+    background:#dfdcd5;
   }
-  .hero::after{
-    content:""; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
-    width:min(240px,65%); height:1px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent); opacity:.7;
+  .hero img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:50% 16%;   /* 讓臉落在上三分之一 */
+    display:block;
   }
-  .avatar{
-    width:128px; height:171px; border-radius:16px; display:block; margin:0 auto;
-    object-fit:cover;                            /* 3:4 直幅，與原圖同比例 */
-    border:4px solid var(--surface);
-    box-shadow:0 0 0 1px var(--edge), 0 16px 34px -16px rgba(60,52,40,.5);
-    background:var(--surface-2);
+  .hero .veil{
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom,
+      rgba(22,24,28,0) 30%,
+      rgba(22,24,28,.18) 52%,
+      rgba(22,24,28,.72) 82%,
+      rgba(22,24,28,.92) 100%);
   }
-  .avatar-fallback{
-    width:128px; height:171px; border-radius:16px; margin:0 auto;
-    display:grid; place-items:center;
-    font-size:48px; font-weight:300; color:var(--accent);
-    background:linear-gradient(145deg,#f3efe7,#e8e3d9);
-    border:4px solid var(--surface); box-shadow:0 0 0 1px var(--edge);
+  .hero .meta{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:0 24px 26px; max-width:520px; margin:0 auto;
   }
-  .name{ margin:24px 0 0; font-size:33px; font-weight:600; letter-spacing:.08em; line-height:1.25; }
-  .name-en{ margin:8px 0 0; font-size:11.5px; letter-spacing:.26em; color:var(--ink-dim); text-transform:uppercase; }
+  .name{
+    margin:0; font-size:34px; font-weight:700; letter-spacing:.07em; line-height:1.2;
+    color:#fff; text-shadow:0 2px 14px rgba(0,0,0,.45);
+  }
+  .name-en{
+    margin:7px 0 0; font-size:11px; letter-spacing:.3em; text-transform:uppercase;
+    color:rgba(255,255,255,.72);
+  }
   .role{
-    display:inline-block; margin:20px 0 0; padding:5px 15px;
-    font-size:13.5px; letter-spacing:.08em; color:var(--accent);
-    border:1px solid rgba(125,154,116,.4); border-radius:999px; background:rgba(125,154,116,.07);
+    display:inline-block; margin:15px 0 0; padding:5px 14px; font-size:12.5px; letter-spacing:.08em;
+    color:#fff; border:1px solid rgba(255,255,255,.5); border-radius:999px;
+    background:rgba(255,255,255,.14); backdrop-filter:blur(6px);
   }
-  .org{ margin:12px 0 0; font-size:13.5px; color:var(--ink-dim); letter-spacing:.04em; }
-  .tagline{ margin:24px auto 0; font-size:14.5px; color:#5d584f; max-width:19em; }
+  .org{ margin:10px 0 0; font-size:13px; color:rgba(255,255,255,.86); letter-spacing:.04em; }
+
+  /* 標語：首屏下方的引言，給版面一個呼吸的起點 */
+  .lead{
+    text-align:center; padding:34px 24px 6px; max-width:520px; margin:0 auto;
+  }
+  .lead p{
+    margin:0; font-size:17px; line-height:1.9; color:#413d36; letter-spacing:.02em;
+  }
+  .lead::after{
+    content:""; display:block; width:40px; height:1px; margin:24px auto 0;
+    background:var(--accent); opacity:.65;
+  }
+
+  /* 缺照片時的備案 */
+  .hero.no-photo{ height:auto; background:transparent; }
+  .hero.no-photo .veil{ display:none; }
+  .hero.no-photo .meta{ position:static; padding:56px 24px 0; text-align:center; }
+  .hero.no-photo .name{ color:var(--ink); text-shadow:none; }
+  .hero.no-photo .name-en{ color:var(--ink-dim); }
+  .hero.no-photo .role{ color:var(--accent); border-color:rgba(var(--accent-rgb),.4); background:rgba(var(--accent-rgb),.07); }
+  .hero.no-photo .org{ color:var(--ink-dim); }
 
   /* ───────── 區塊 ───────── */
   section{ padding-block:40px; }
@@ -141,7 +171,8 @@
 
   /* ───────── 底部動作列 ───────── */
   .dock{
-    position:fixed; left:0; right:0; bottom:0; z-index:20;
+    position:fixed; left:50%; transform:translateX(-50%);
+    width:100%; max-width:520px; bottom:0; z-index:20;
     padding:12px 22px; padding-bottom:max(12px,env(safe-area-inset-bottom));
     background:rgba(246,243,238,.88); backdrop-filter:blur(14px);
     border-top:1px solid var(--edge);
@@ -180,16 +211,22 @@
 <body>
 
 <!-- ═══════════ Hero ═══════════ -->
-<header class="hero">
-  <img class="avatar" id="avatar" src="avatar.jpg" alt="陳詠筑 Rita">
-  <div class="avatar-fallback" id="avatarFallback" hidden>詠</div>
+<div class="shell">
 
-  <h1 class="name">陳詠筑</h1>
-  <p class="name-en">Rita Chen</p>
-  <p class="role">AI 應用師</p>
-  <p class="org">國立中央大學 醫學工程研究所</p>
-  <p class="tagline">把模型接進資料，<br>把資料變成答案。</p>
+<header class="hero" id="hero">
+  <img id="avatar" src="avatar.jpg" alt="陳詠筑 Rita">
+  <div class="veil"></div>
+  <div class="meta">
+    <h1 class="name">陳詠筑</h1>
+    <p class="name-en">Rita Chen</p>
+    <p class="role">AI 應用師</p>
+    <p class="org">國立中央大學 醫學工程研究所</p>
+  </div>
 </header>
+
+<div class="lead">
+  <p>把模型接進資料，<br>把資料變成答案。</p>
+</div>
 
 <div class="wrap">
 
@@ -264,6 +301,8 @@
   <footer>RITA CHEN</footer>
 </div>
 
+</div><!-- /.shell -->
+
 <!-- ═══════════ 底部動作列 ═══════════ -->
 <div class="dock">
   <div class="dock-inner">
@@ -311,13 +350,13 @@ const LIFF_ID = "2011841020-xONie09p";
 
 // 名片圖的公開網址，例：https://chenyungchu.github.io/namecard/card.png
 // 留空的話分享出去會退回文字版卡片（仍可點，只是沒有圖）
-const CARD_IMAGE_URL = "https://chenyungchu.github.io/namecard/card.png";
+const CARD_IMAGE_URL = "https://chenyungchu.github.io/namecard/card-flex.jpg";
 
 /* ───────── 頭像缺檔時改用文字頭像 ───────── */
 const avatar = document.getElementById("avatar");
 avatar.addEventListener("error", () => {
-  avatar.hidden = true;
-  document.getElementById("avatarFallback").hidden = false;
+  avatar.remove();
+  document.getElementById("hero").classList.add("no-photo");
 });
 
 /* ───────── IG 圖片磚：三張都載不到就整排隱藏 ───────── */
